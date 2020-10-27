@@ -60,11 +60,25 @@ public class Controller {
             if(checkingRadio.isSelected()){
 
                 Account account = new Checking(directDeposit.isSelected(),openDate, Double.parseDouble(balance.getText()), lname.getText(), fname.getText() );
-                System.out.println("test");
-                database.add(account);
+                boolean added = database.add(account);
+                if(!added){
+                    throw new Exception("Account already Exists!");
+                }
+            } else if( savingsRadio.isSelected()){
+                Account account = new Savings(loyalCustomer.isSelected(),openDate, Double.parseDouble(balance.getText()), lname.getText(), fname.getText() );
+                boolean added = database.add(account);
+                if(!added){
+                    throw new Exception("Account already Exists!");
+                }
+            } else if(marketRadio.isSelected()){
+                Account account = new MoneyMarket(openDate, Double.parseDouble(balance.getText()), lname.getText(), fname.getText() );
+                boolean added = database.add(account);
+                if(!added){
+                    throw new Exception("Account already Exists!");
+                }
             }
 
-            database.printAccounts();
+
 
 
 
@@ -80,13 +94,35 @@ public class Controller {
             alert.setHeaderText("input error!");
             alert.setContentText("Input Data Type mismatch!");
             alert.showAndWait();
+        }catch(Exception e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!!");
+            alert.setHeaderText("input error!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
 
     }
 
     public void checkInput() {
         if (AccountType.getSelectedToggle() == null) {
-            throw new InputMismatchException("Please select account type");
+            throw new InputMismatchException("Please select account type!");
+        }
+
+        if(fname.getText().isBlank()){
+            throw new InputMismatchException("Please Input a First name!");
+        }
+
+        if(lname.getText().isBlank()){
+            throw new InputMismatchException("Please Input a last name!");
+        }
+
+        if(balance.getText().isBlank()){
+            throw new InputMismatchException("Please Input a balance!");
+        }
+
+        if(date.getValue() == null){
+            throw new InputMismatchException("Please Input a Date!");
         }
 
 
