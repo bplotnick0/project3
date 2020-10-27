@@ -13,7 +13,7 @@ import java.util.InputMismatchException;
 public class Controller {
 
     @FXML
-    private TextField fname, lname, balance;
+    private TextField fname, lname, balance, fname1, lname1;
     @FXML
     private DatePicker date;
     @FXML
@@ -21,9 +21,9 @@ public class Controller {
     @FXML
     private CheckBox loyalCustomer;
     @FXML
-    private RadioButton checkingRadio, marketRadio, savingsRadio;
+    private RadioButton checkingRadio, marketRadio, savingsRadio, checkingRadio1, marketRadio1, savingsRadio1;
     @FXML
-    private ToggleGroup AccountType;
+    private ToggleGroup AccountType, AccountType1;
     private AccountDatabase database = new AccountDatabase();
 
 
@@ -52,7 +52,7 @@ public class Controller {
     @FXML
     public void addAccount(ActionEvent actionEvent) {
         try{
-            checkInput();
+            checkInputAdd();
             String[] datePicked = (date.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))).split("/");
             Date openDate = new Date(Integer.parseInt(datePicked[2]), Integer.parseInt(datePicked[1]), Integer.parseInt(datePicked[0]));
 
@@ -77,11 +77,6 @@ public class Controller {
                     throw new Exception("Account already Exists!");
                 }
             }
-
-
-
-
-
         } catch (InputMismatchException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning!!");
@@ -104,7 +99,25 @@ public class Controller {
 
     }
 
-    public void checkInput() {
+    @FXML
+    public void closeAccount(ActionEvent actionEvent) {
+        try {
+            checkInputClose();
+            if(checkingRadio1.isSelected()){
+                Account account = new Checking(fname1.getText(), lname1.getText());
+
+            }
+        } catch (InputMismatchException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!!");
+            alert.setHeaderText("input error!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+
+    public void checkInputAdd(){
         if (AccountType.getSelectedToggle() == null) {
             throw new InputMismatchException("Please select account type!");
         }
@@ -124,8 +137,20 @@ public class Controller {
         if(date.getValue() == null){
             throw new InputMismatchException("Please Input a Date!");
         }
+    }
 
+    public void checkInputClose(){
+        if (AccountType1.getSelectedToggle() == null) {
+            throw new InputMismatchException("Please select account type!");
+        }
 
+        if(fname1.getText().isBlank()){
+            throw new InputMismatchException("Please Input a First name!");
+        }
+
+        if(lname1.getText().isBlank()){
+            throw new InputMismatchException("Please Input a last name!");
+        }
     }
 
 }
