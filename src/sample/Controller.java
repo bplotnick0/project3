@@ -86,7 +86,7 @@ public class Controller {
 
     public void checkInput() {
         if (AccountType.getSelectedToggle() == null) {
-            throw new InputMismatchException("Please select account type");
+            throw new InputMismatchException("Please select account type!");
         }
 
 
