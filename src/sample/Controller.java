@@ -105,9 +105,27 @@ public class Controller {
             checkInputClose();
             if(checkingRadio1.isSelected()){
                 Account account = new Checking(fname1.getText(), lname1.getText());
-
+                if (!database.remove(account)){
+                    throw new Exception("Account does not exist!");
+                }
+            }else if(savingsRadio1.isSelected()){
+                Account account = new Savings(fname1.getText(), lname1.getText());
+                if (!database.remove(account)){
+                    throw new Exception("Account does not exist!");
+                }
+            } else if(marketRadio1.isSelected()){
+                Account account = new MoneyMarket(fname1.getText(), lname1.getText());
+                if (!database.remove(account)){
+                    throw new Exception("Account does not exist!");
+                }
             }
         } catch (InputMismatchException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!!");
+            alert.setHeaderText("input error!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }catch(Exception e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning!!");
             alert.setHeaderText("input error!");
