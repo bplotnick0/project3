@@ -30,12 +30,14 @@ public class Controller {
     @FXML
     public void selectChecking(javafx.event.ActionEvent actionEvent) {
         directDeposit.setDisable(false);
+        loyalCustomer.setSelected(false);
         loyalCustomer.setDisable(true);
     }
 
     @FXML
     public void selectSavings(javafx.event.ActionEvent actionEvent) {
         loyalCustomer.setDisable(false);
+        directDeposit.setSelected(false);
         directDeposit.setDisable(true);
     }
 
@@ -43,6 +45,8 @@ public class Controller {
     public void selectMarket(javafx.event.ActionEvent actionEvent) {
         loyalCustomer.setDisable(true);
         directDeposit.setDisable(true);
+        directDeposit.setSelected(false);
+        loyalCustomer.setSelected(false);
     }
 
     @FXML
@@ -84,6 +88,8 @@ public class Controller {
         if (AccountType.getSelectedToggle() == null) {
             throw new InputMismatchException("Please select account type");
         }
+
+
     }
 
 }
