@@ -184,9 +184,47 @@
             </content>
         </Tab>
         <Tab text="Close Account">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
+         <content>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <GridPane layoutX="187.0" layoutY="115.0" prefHeight="157.0" prefWidth="226.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="113.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="113.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="First Name" />
+                        <Label text="Last Name" GridPane.rowIndex="1" />
+                        <TextField fx:id="fname1" GridPane.columnIndex="1" />
+                        <TextField fx:id="lname1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="closeButton" layoutX="258.0" layoutY="309.0" mnemonicParsing="false" onAction="#closeAccount" text="Close Account" />
+                  <HBox alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="100.0" prefWidth="318.0" spacing="20.0">
+                     <children>
+                        <RadioButton fx:id="checkingRadio1" mnemonicParsing="false" onAction="#selectChecking" text="Checking">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="AccountType1" />
+                           </toggleGroup>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </RadioButton>
+                        <RadioButton fx:id="savingsRadio1" mnemonicParsing="false" onAction="#selectSavings" text="Savings" toggleGroup="$AccountType1" />
+                        <RadioButton fx:id="marketRadio1" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$AccountType1" />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </content>
         </Tab>
     </tabs>
 </TabPane>
