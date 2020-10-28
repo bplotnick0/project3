@@ -48,6 +48,10 @@ public class AccountDatabase {
         return this.size;
     }
 
+    public Account[] getAccounts(){
+        return this.accounts;
+    }
+
     /**
      * Adds 5 slots to the end of a database
      */
@@ -139,7 +143,7 @@ public class AccountDatabase {
     /**
      * Sorts accounts in ascending order by the date they were opened
      */
-    private void sortByDateOpen() {
+    public void sortByDateOpen() {
        
         Account temp;
 
@@ -159,7 +163,7 @@ public class AccountDatabase {
     /**
      * Sorts accounts alphabetically by last name.
      */
-    private void sortByLastName() {
+    public void sortByLastName() {
         Account temp;
 
         for (int i = 0; i < this.size; i++) {

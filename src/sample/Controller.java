@@ -24,6 +24,8 @@ public class Controller {
     private RadioButton checkingRadio, marketRadio, savingsRadio, checkingRadio1, marketRadio1, savingsRadio1;
     @FXML
     private ToggleGroup AccountType, AccountType1;
+    @FXML
+    private TextArea textField;
     private AccountDatabase database = new AccountDatabase();
 
 
@@ -53,7 +55,7 @@ public class Controller {
     public void addAccount(ActionEvent actionEvent) {
         try{
             checkInputAdd();
-            String[] datePicked = (date.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"))).split("/");
+            String[] datePicked = (date.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))).split("/");
             Date openDate = new Date(Integer.parseInt(datePicked[2]), Integer.parseInt(datePicked[1]), Integer.parseInt(datePicked[0]));
 
 
@@ -171,4 +173,44 @@ public class Controller {
         }
     }
 
+    public void printAccounts(ActionEvent actionEvent) {
+        if (database.getSize() == 0){
+            textField.appendText("Database empty \n");
+        } else {
+
+            for (int i = 0; i < database.getSize(); i++) {
+                textField.appendText(database.getAccounts()[i].toString() + "\n");
+                textField.appendText("-interest: $ " + String.format("%.2f",database.getAccounts()[i].monthlyInterest()) + "\n");
+                textField.appendText("-fee: $ " + String.format("%.2f",database.getAccounts()[i].monthlyFee()) + "\n");
+                textField.appendText("-new balance: $ " + String.format("%.2f",(database.getAccounts()[i].getBalance() + database.getAccounts()[i].monthlyInterest()
+                        - database.getAccounts()[i].monthlyFee())) + "\n");
+            }
+        }
+
+    }
+
+    public void printByLastName(ActionEvent actionEvent) {
+        if (database.getSize() == 0){
+            textField.appendText("Database empty \n");
+        } else {
+            database.sortByLastName();
+            for (int i = 0; i < database.getSize(); i++) {
+                textField.appendText(database.getAccounts()[i].toString() + "\n");
+            }
+        }
+    }
+
+    public void printByDateOpened(ActionEvent actionEvent) {
+        if (database.getSize() == 0){
+            textField.appendText("Database empty \n");
+        } else {
+            database.sortByDateOpen();
+            for (int i = 0; i < database.getSize(); i++) {
+
+                textField.appendText(database.getAccounts()[i].toString() + "\n");
+
+
+            }
+        }
+    }
 }

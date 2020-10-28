@@ -8,6 +8,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -95,19 +96,19 @@
                   </GridPane>
                   <HBox alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="100.0" prefWidth="318.0" spacing="20.0">
                      <children>
-                        <RadioButton fx:id="checkingRadio1" mnemonicParsing="false" onAction="#selectChecking" text="Checking">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="AccountType1" />
-                           </toggleGroup>
+                        <RadioButton fx:id="depositChecking" mnemonicParsing="false" onAction="#selectChecking" text="Checking">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="depositRadios" />
+                           </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="savingsRadio1" mnemonicParsing="false" onAction="#selectSavings" text="Savings" toggleGroup="$AccountType1" />
-                        <RadioButton fx:id="marketRadio1" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$AccountType1" />
+                        <RadioButton fx:id="depositSavings" mnemonicParsing="false" onAction="#selectSavings" text="Savings" toggleGroup="$depositRadios" />
+                        <RadioButton fx:id="depositMoney" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$depositRadios" />
                      </children>
                   </HBox>
-                  <Button fx:id="addButton1" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#addAccount" text="Make Deposit" />
+                  <Button fx:id="makeDeposit" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#addAccount" text="Make Deposit" />
                </children></AnchorPane>
             </content>
         </Tab>
@@ -148,14 +149,25 @@
                         <RadioButton fx:id="marketRadio2" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$AccountType2" />
                      </children>
                   </HBox>
-                  <Button fx:id="addButton11" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#addAccount" text="Make Withdrawal" />
+                  <Button fx:id="withdrawButton" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#addAccount" text="Make Withdrawal" />
                </children></AnchorPane>
             </content>
         </Tab>
-        <Tab text="Display Accouints">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
+        <Tab text="Display Accounts">
+         <content>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextArea fx:id="textField" layoutX="84.0" layoutY="123.0" prefHeight="200.0" prefWidth="432.0" />
+                  <HBox alignment="CENTER" layoutX="70.0" layoutY="23.0" prefHeight="100.0" prefWidth="460.0" spacing="20.0">
+                     <children>
+                        <Button fx:id="printAccounts" mnemonicParsing="false" onAction="#printAccounts" text="Print Accounts" />
+                        <Button fx:id="printByName" mnemonicParsing="false" onAction="#printByLastName" text="Print by Name" />
+                        <Button fx:id="printByDate" mnemonicParsing="false" onAction="#printByDateOpened" text="Print by Date" />
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+         </content>
         </Tab>
         <Tab text="Import/Export">
             <content>
@@ -211,12 +223,12 @@
                   <HBox alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="100.0" prefWidth="318.0" spacing="20.0">
                      <children>
                         <RadioButton fx:id="checkingRadio1" mnemonicParsing="false" onAction="#selectChecking" text="Checking">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="AccountType1" />
-                           </toggleGroup>
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="AccountType1" />
+                           </toggleGroup>
                         </RadioButton>
                         <RadioButton fx:id="savingsRadio1" mnemonicParsing="false" onAction="#selectSavings" text="Savings" toggleGroup="$AccountType1" />
                         <RadioButton fx:id="marketRadio1" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$AccountType1" />
