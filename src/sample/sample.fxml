@@ -157,7 +157,7 @@
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextArea fx:id="textField" layoutX="84.0" layoutY="123.0" prefHeight="200.0" prefWidth="432.0" />
+                  <TextArea fx:id="textField" layoutX="84.0" layoutY="101.0" prefHeight="200.0" prefWidth="432.0" />
                   <HBox alignment="CENTER" layoutX="70.0" layoutY="23.0" prefHeight="100.0" prefWidth="460.0" spacing="20.0">
                      <children>
                         <Button fx:id="printAccounts" mnemonicParsing="false" onAction="#printAccounts" text="Print Accounts" />
@@ -165,6 +165,7 @@
                         <Button fx:id="printByDate" mnemonicParsing="false" onAction="#printByDateOpened" text="Print by Date" />
                      </children>
                   </HBox>
+                  <Button fx:id="clearButton" layoutX="274.0" layoutY="320.0" mnemonicParsing="false" onAction="#clearText" text="Clear" />
                </children>
             </Pane>
          </content>
