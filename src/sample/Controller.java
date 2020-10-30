@@ -357,19 +357,19 @@ public class Controller {
             checkWithdrawInputs();
             if(withdrawChecking.isSelected()){
                 Account account = new Checking(withdrawFName.getText(), withdrawLName.getText() );
-                if(database.withdrawal(account, Double.parseDouble(depositAmount.getText())) == -1){
+                if(database.withdrawal(account, Double.parseDouble(withdrawAmount.getText())) == -1){
                     throw new Exception("Account does not exist!");
                 }
 
             } else if( savingsRadio.isSelected()){
                 Account account = new Savings(withdrawFName.getText(), withdrawLName.getText() );
-                if(database.withdrawal(account, Double.parseDouble(depositAmount.getText())) == -1){
+                if(database.withdrawal(account, Double.parseDouble(withdrawAmount.getText())) == -1){
                     throw new Exception("Account does not exist!");
                 }
 
             } else if(marketRadio.isSelected()){
                 Account account = new MoneyMarket(withdrawFName.getText(), withdrawLName.getText() );
-                if(database.withdrawal(account, Double.parseDouble(depositAmount.getText())) == -1){
+                if(database.withdrawal(account, Double.parseDouble(withdrawAmount.getText())) == -1){
                     throw new Exception("Account does not exist!");
                 }
 
