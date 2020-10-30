@@ -89,14 +89,14 @@
                         <Label text="First Name" />
                         <Label text="Last Name" GridPane.rowIndex="1" />
                         <Label text="Amount" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="depositFName" GridPane.columnIndex="1" />
+                        <TextField fx:id="depositLName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="depositAmount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <HBox alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="100.0" prefWidth="318.0" spacing="20.0">
                      <children>
-                        <RadioButton fx:id="depositChecking" mnemonicParsing="false" onAction="#selectChecking" text="Checking">
+                        <RadioButton fx:id="depositChecking" mnemonicParsing="false" text="Checking">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -104,11 +104,11 @@
                               <ToggleGroup fx:id="depositRadios" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="depositSavings" mnemonicParsing="false" onAction="#selectSavings" text="Savings" toggleGroup="$depositRadios" />
-                        <RadioButton fx:id="depositMoney" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$depositRadios" />
+                        <RadioButton fx:id="depositSavings" mnemonicParsing="false" text="Savings" toggleGroup="$depositRadios" />
+                        <RadioButton fx:id="depositMoney" mnemonicParsing="false" text="Money Market" toggleGroup="$depositRadios" />
                      </children>
                   </HBox>
-                  <Button fx:id="makeDeposit" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#addAccount" text="Make Deposit" />
+                  <Button fx:id="makeDeposit" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#makeDeposit" text="Make Deposit" />
                </children></AnchorPane>
             </content>
         </Tab>
@@ -130,26 +130,26 @@
                         <Label text="First Name" />
                         <Label text="Last Name" GridPane.rowIndex="1" />
                         <Label text="Amount" GridPane.rowIndex="2" />
-                        <TextField GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="withdrawFName" GridPane.columnIndex="1" />
+                        <TextField fx:id="withdrawLName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="withdrawAmount" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                      </children>
                   </GridPane>
                   <HBox alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="100.0" prefWidth="318.0" spacing="20.0">
                      <children>
-                        <RadioButton fx:id="checkingRadio2" mnemonicParsing="false" onAction="#selectChecking" text="Checking">
+                        <RadioButton fx:id="withdrawChecking" mnemonicParsing="false" onAction="#selectChecking" text="Checking">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                            <toggleGroup>
-                              <ToggleGroup fx:id="AccountType2" />
+                              <ToggleGroup fx:id="withdrawRadio" />
                            </toggleGroup>
                         </RadioButton>
-                        <RadioButton fx:id="savingsRadio2" mnemonicParsing="false" onAction="#selectSavings" text="Savings" toggleGroup="$AccountType2" />
-                        <RadioButton fx:id="marketRadio2" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$AccountType2" />
+                        <RadioButton fx:id="withdrawSavings" mnemonicParsing="false" onAction="#selectSavings" text="Savings" toggleGroup="$withdrawRadio" />
+                        <RadioButton fx:id="withrawMoney" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$withdrawRadio" />
                      </children>
                   </HBox>
-                  <Button fx:id="withdrawButton" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#addAccount" text="Make Withdrawal" />
+                  <Button fx:id="withdrawButton" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#makeWithdrawal" text="Make Withdrawal" />
                </children></AnchorPane>
             </content>
         </Tab>
@@ -174,7 +174,7 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <GridPane layoutX="187.0" layoutY="115.0">
+                  <GridPane layoutX="185.0" layoutY="107.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -183,14 +183,10 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label text="Import:" />
-                        <Label text="Export:" GridPane.columnIndex="1" />
-                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="Import" GridPane.rowIndex="3" />
-                        <Button mnemonicParsing="false" text="Export" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button fx:id="importButton" mnemonicParsing="false" onAction="#importFile" text="Import" GridPane.rowIndex="1" />
+                        <Button fx:id="exportButton" mnemonicParsing="false" onAction="#exportFile" text="Export" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                </children></AnchorPane>

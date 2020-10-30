@@ -183,50 +183,60 @@ public class AccountDatabase {
 /**
  * Prints accounts in ascending order by date opened.
  */
-    public void printByDateOpen() {
-        if(this.size == 0){
-            System.out.println("Database is empty");
-        }
+    public String printByDateOpen() {
+
+        String sorted = "";
         sortByDateOpen();
         for (int i = 0; i < this.size; i++) {
-            System.out.println(this.accounts[i].toString());
-            System.out.println("-interest: $ " + String.format("%.2f",this.accounts[i].monthlyInterest()));
-            System.out.println("-fee: $ " + String.format("%.2f",this.accounts[i].monthlyFee()));
-            System.out.println("-new balance: $ " + String.format("%.2f",(this.accounts[i].getBalance() + this.accounts[i].monthlyInterest()
+            String string1 = (this.accounts[i].toString());
+            String interest = ("-interest: $ " + String.format("%.2f",this.accounts[i].monthlyInterest()));
+            String fee = ("-fee: $ " + String.format("%.2f",this.accounts[i].monthlyFee()));
+            String newBal = ("-new balance: $ " + String.format("%.2f",(this.accounts[i].getBalance() + this.accounts[i].monthlyInterest()
                     - this.accounts[i].monthlyFee())));
+
+
+            sorted = sorted + "\n" + string1 + "\n" + interest + "\n" + fee + "\n" + newBal + "\n";
         }
+
+        return sorted;
     }
 
 /**
  * Prints accounts in alphabetical order by last name.
  */
-    public void printByLastName() {
-        if(this.size == 0){
-            System.out.println("Database is empty");
-        }
+    public String printByLastName() {
 
+        String sorted = "";
         sortByLastName();
         for (int i = 0; i < this.size; i++) {
-            System.out.println(this.accounts[i].toString());
-            System.out.println("-interest: $ " + String.format("%.2f",this.accounts[i].monthlyInterest()));
-            System.out.println("-fee: $ " + String.format("%.2f",this.accounts[i].monthlyFee()));
-            System.out.println("-new balance: $ " + String.format("%.2f",(this.accounts[i].getBalance() + this.accounts[i].monthlyInterest()
+            String string1 = (this.accounts[i].toString());
+            String interest = ("-interest: $ " + String.format("%.2f",this.accounts[i].monthlyInterest()));
+            String fee = ("-fee: $ " + String.format("%.2f",this.accounts[i].monthlyFee()));
+            String newBal = ("-new balance: $ " + String.format("%.2f",(this.accounts[i].getBalance() + this.accounts[i].monthlyInterest()
                     - this.accounts[i].monthlyFee())));
+
+
+            sorted = sorted + "\n" + string1 + "\n" + interest + "\n" + fee + "\n" + newBal + "\n";
         }
+
+        return sorted;
 
     }
 
 /**
  * Prints accounts.
  */
-    public void printAccounts() {
+    public String printAccounts() {
         if(this.size == 0){
             System.out.println("Database is empty");
         }
+        String printed = "";
         for (int i = 0; i < this.size; i++) {
-            System.out.println(this.accounts[i].toString());
+            String account = (this.accounts[i].toString());
+            printed = printed + "\n" + account + "\n";
             
         }
+        return printed;
 
     }
 }
