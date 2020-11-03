@@ -22,9 +22,10 @@
     <tabs>
         <Tab text="Add Account">
             <content>
-                <Pane prefHeight="200.0" prefWidth="200.0">
+                <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0">
                     <children>
-                        <GridPane layoutX="187.0" layoutY="115.0" prefHeight="157.0" prefWidth="226.0">
+                  <TextArea fx:id="accountTextArea" editable="false" layoutX="142.0" layoutY="372.0" prefHeight="124.0" prefWidth="327.0" />
+                        <GridPane layoutX="187.0" layoutY="114.0" prefHeight="157.0" prefWidth="226.0">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="113.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="113.0" />
@@ -73,7 +74,7 @@
         </Tab>
         <Tab text="Deposit">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="700.0" minWidth="700.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <GridPane layoutX="187.0" layoutY="115.0" prefHeight="90.0" prefWidth="225.0">
                     <columnConstraints>
@@ -109,12 +110,13 @@
                      </children>
                   </HBox>
                   <Button fx:id="makeDeposit" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#makeDeposit" text="Make Deposit" />
+                  <TextArea fx:id="depositTextArea" editable="false" layoutX="79.0" layoutY="304.0" prefHeight="200.0" prefWidth="441.0" />
                </children></AnchorPane>
             </content>
         </Tab>
         <Tab text="Withdraw">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                <AnchorPane minHeight="700.0" minWidth="700.0" prefHeight="180.0" prefWidth="200.0">
                <children>
                   <GridPane layoutX="187.0" layoutY="115.0" prefHeight="90.0" prefWidth="225.0">
                      <columnConstraints>
@@ -150,6 +152,7 @@
                      </children>
                   </HBox>
                   <Button fx:id="withdrawButton" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#makeWithdrawal" text="Make Withdrawal" />
+                  <TextArea fx:id="withdrawTextArea" editable="false" layoutX="74.0" layoutY="293.0" prefHeight="193.0" prefWidth="465.0" />
                </children></AnchorPane>
             </content>
         </Tab>
@@ -157,7 +160,7 @@
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextArea fx:id="textField" layoutX="84.0" layoutY="101.0" prefHeight="200.0" prefWidth="432.0" />
+                  <TextArea fx:id="textField" editable="false" layoutX="84.0" layoutY="101.0" prefHeight="200.0" prefWidth="432.0" />
                   <HBox alignment="CENTER" layoutX="70.0" layoutY="23.0" prefHeight="100.0" prefWidth="460.0" spacing="20.0">
                      <children>
                         <Button fx:id="printAccounts" mnemonicParsing="false" onAction="#printAccounts" text="Print Accounts" />
@@ -189,6 +192,7 @@
                         <Button fx:id="exportButton" mnemonicParsing="false" onAction="#exportFile" text="Export" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
+                  <TextArea fx:id="importTextArea" editable="false" layoutX="79.0" layoutY="185.0" prefHeight="200.0" prefWidth="410.0" />
                </children></AnchorPane>
             </content>
         </Tab>
@@ -196,16 +200,12 @@
          <content>
             <Pane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <GridPane layoutX="187.0" layoutY="115.0" prefHeight="157.0" prefWidth="226.0">
+                  <GridPane layoutX="187.0" layoutY="115.0" prefHeight="100.0" prefWidth="226.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="10.0" prefWidth="113.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="117.0" minWidth="10.0" prefWidth="113.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
@@ -216,7 +216,7 @@
                         <TextField fx:id="lname1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Button fx:id="closeButton" layoutX="258.0" layoutY="309.0" mnemonicParsing="false" onAction="#closeAccount" text="Close Account" />
+                  <Button fx:id="closeButton" layoutX="254.0" layoutY="225.0" mnemonicParsing="false" onAction="#closeAccount" text="Close Account" />
                   <HBox alignment="CENTER" layoutX="148.0" layoutY="14.0" prefHeight="100.0" prefWidth="318.0" spacing="20.0">
                      <children>
                         <RadioButton fx:id="checkingRadio1" mnemonicParsing="false" onAction="#selectChecking" text="Checking">
@@ -231,6 +231,7 @@
                         <RadioButton fx:id="marketRadio1" mnemonicParsing="false" onAction="#selectMarket" text="Money Market" toggleGroup="$AccountType1" />
                      </children>
                   </HBox>
+                  <TextArea fx:id="closeTextArea" editable="false" layoutX="80.0" layoutY="265.0" prefHeight="210.0" prefWidth="440.0" />
                </children>
             </Pane>
          </content>

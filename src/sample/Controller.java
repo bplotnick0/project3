@@ -29,7 +29,7 @@ public class Controller {
     @FXML
     private ToggleGroup AccountType, AccountType1, depositRadios, withdrawRadio;
     @FXML
-    private TextArea textField;
+    private TextArea textField, accountTextArea, depositTextArea, withdrawTextArea, importTextArea, closeTextArea;
     private AccountDatabase database = new AccountDatabase();
 
 
@@ -84,25 +84,12 @@ public class Controller {
                 }
             }
         } catch (InputMismatchException e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            accountTextArea.appendText(e.getMessage() + "\n");
         } catch(NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText("Input Data Type mismatch!");
-            alert.showAndWait();
+            accountTextArea.appendText("Input Data Type mismatch! \n");
         }catch(Exception e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            accountTextArea.appendText(e.getMessage() + "\n");
         }
-
     }
 
     @FXML
@@ -126,17 +113,9 @@ public class Controller {
                 }
             }
         } catch (InputMismatchException e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            closeTextArea.appendText(e.getMessage() + "\n");
         }catch(Exception e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            closeTextArea.appendText(e.getMessage() + "\n");
         }
     }
 
@@ -219,7 +198,7 @@ public class Controller {
         try {
             sc = new Scanner(sourceFile);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            importTextArea.appendText(e.getMessage());
         }
 
         while (sc.hasNextLine()) {
@@ -236,6 +215,7 @@ public class Controller {
             }else if(inputAcct[0].equals("M")){
                 Account acct = new MoneyMarket(date, Double.parseDouble(inputAcct[3]), inputAcct[2], inputAcct[1]);
                 database.add(acct);
+                ((MoneyMarket) acct).setWithdrawals(Integer.parseInt(inputAcct[5]));
             }else{
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning!!");
@@ -263,7 +243,7 @@ public class Controller {
             out.close();
 
         } catch (IOException e) {
-            e.printStackTrace();
+            importTextArea.appendText(e.getMessage());
         }
 
     }
@@ -311,24 +291,12 @@ public class Controller {
 
 
         }catch(InputMismatchException e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            depositTextArea.appendText(e.getMessage() + "\n");
         }catch(NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText("Input Data Type mismatch!");
-            alert.showAndWait();
+            depositTextArea.appendText("Input data type mismatch\n");
 
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            depositTextArea.appendText(e.getMessage() + "\n");
         }
 
 
@@ -357,44 +325,41 @@ public class Controller {
             checkWithdrawInputs();
             if(withdrawChecking.isSelected()){
                 Account account = new Checking(withdrawFName.getText(), withdrawLName.getText() );
-                if(database.withdrawal(account, Double.parseDouble(withdrawAmount.getText())) == -1){
+                int withdrawal = database.withdrawal(account, Double.parseDouble(withdrawAmount.getText()));
+                if(withdrawal== -1){
                     throw new Exception("Account does not exist!");
+                }else if(withdrawal == 1){
+                    throw new Exception("Insufficient funds!");
                 }
 
             } else if( savingsRadio.isSelected()){
                 Account account = new Savings(withdrawFName.getText(), withdrawLName.getText() );
-                if(database.withdrawal(account, Double.parseDouble(withdrawAmount.getText())) == -1){
+                int withdrawal = database.withdrawal(account, Double.parseDouble(withdrawAmount.getText()));
+                if(withdrawal== -1){
                     throw new Exception("Account does not exist!");
+                }else if(withdrawal == 1){
+                    throw new Exception("Insufficient funds!");
                 }
 
             } else if(marketRadio.isSelected()){
                 Account account = new MoneyMarket(withdrawFName.getText(), withdrawLName.getText() );
-                if(database.withdrawal(account, Double.parseDouble(withdrawAmount.getText())) == -1){
+                int withdrawal = database.withdrawal(account, Double.parseDouble(withdrawAmount.getText()));
+                if(withdrawal== -1){
                     throw new Exception("Account does not exist!");
+                }else if(withdrawal == 1){
+                    throw new Exception("Insufficient funds!");
                 }
 
             }
 
 
         }catch(InputMismatchException e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            withdrawTextArea.appendText(e.getMessage() + "\n");
         }catch(NumberFormatException e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText("Input Data Type mismatch!");
-            alert.showAndWait();
+            withdrawTextArea.appendText("Input data type mismatch \n");
 
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!!");
-            alert.setHeaderText("input error!");
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            withdrawTextArea.appendText(e.getMessage() + "\n");
         }
 
 

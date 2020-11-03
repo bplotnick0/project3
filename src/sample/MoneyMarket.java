@@ -66,6 +66,7 @@ public class MoneyMarket extends Account {
    * Setter for withdrawals
    * @param newWithdrawals new number of withdrawals
    */
+
   public void setWithdrawals(int newWithdrawals) {
     this.withdrawals = newWithdrawals;
   }
